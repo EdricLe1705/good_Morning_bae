@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bé ơi sáng rồi!</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: black;
+            overflow: hidden;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 2em;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        #message {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        /* Hiệu ứng trái tim */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: float 5s infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            50% { transform: translateY(-200px) rotate(-45deg); opacity: 0.5; }
+            100% { transform: translateY(-400px) rotate(-45deg); opacity: 0; }
+        }
+
+        /* Nhúng video YouTube */
+        .video-container {
+            width: 560px;
+            height: 315px;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="message">Bé ơi sáng rồi dậy đi!</div>
+    
+    <!-- Nhúng video từ YouTube -->
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/jPjQJYKhhk4?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // Tạo hiệu ứng trái tim bay
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s"; 
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
